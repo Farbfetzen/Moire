@@ -1,4 +1,5 @@
 - more patterns, see english wikipedia
 - more command line arguments: foreground color, background color
 - pattern-specific command line arguments: line width and distance, circle radius and distance, etc.
-
+- switch pattern with keypress
+- gui

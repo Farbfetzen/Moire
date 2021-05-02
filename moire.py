@@ -24,7 +24,7 @@ parser.add_argument(
 )
 args = parser.parse_args()
 
-valid_names = {"dots"}
+valid_names = {"dots", "lines"}
 if args.name not in valid_names:
     parser.error(f"name must be one of {list(valid_names)}")
 

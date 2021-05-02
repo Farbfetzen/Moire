@@ -1,11 +1,13 @@
 import pygame
 
 import src.dots
+import src.lines
 
 
 CURSOR_MODES = ("move", "rotate")
 PATTERNS = {
-    "dots": src.dots.DotsPattern
+    "dots": src.dots.DotsPattern,
+    "lines": src.lines.LinePattern
 }
 
 

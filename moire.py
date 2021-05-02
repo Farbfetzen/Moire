@@ -3,7 +3,7 @@ import os
 
 os.environ["PYGAME_HIDE_SUPPORT_PROMPT"] = "1"
 
-import src.run
+import src.app
 
 
 parser = argparse.ArgumentParser()
@@ -28,4 +28,4 @@ valid_names = {"dots", "lines"}
 if args.name not in valid_names:
     parser.error(f"name must be one of {list(valid_names)}")
 
-src.run.App(args.name, args.window_size).run()
+src.app.App(args.name, args.window_size).run()

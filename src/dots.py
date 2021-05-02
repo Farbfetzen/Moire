@@ -8,7 +8,7 @@ from src.pattern import Pattern
 BACKGROUND_COLOR = pygame.Color(220, 220, 220)
 CIRCLE_COLOR = pygame.Color(16, 16, 16)
 CIRCLE_RADIUS = 5
-CIRCLE_DISTANCE = 20
+CIRCLE_DISTANCE = 10
 
 
 class DotsPattern(Pattern):

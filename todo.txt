@@ -1,5 +1,4 @@
 - more patterns, see english wikipedia
-- key controls: wasd, qe, move n pixels and rotate one degree per keypress
 - more command line arguments: foreground color, background color
 - pattern-specific command line arguments: line width and distance, circle radius and distance, etc.
 

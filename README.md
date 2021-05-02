@@ -13,9 +13,9 @@ Available patterns:
 ### Controls:
 Action | Binding
 --- | ---
-Move (translate) foreground | Left mouse button
-Rotate foreground | Right mouse button
-Reset foreground | Backspace
+Move | Left mouse button or W, A, S, D
+Rotate | Right mouse button or Q, E
+Reset | Backspace
 Toggle info display | F1
 Quit | Esc
 

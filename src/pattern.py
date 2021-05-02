@@ -17,12 +17,13 @@ class Pattern:
         self.foreground_position += motion * self.magnification
         self.foreground_rect.topleft = self.foreground_position
 
-    def rotate(self, mouse_movement):
+    def rotate(self, mouse_move_events, keyboard_angle):
         center = pygame.Vector2(self.foreground_rect.center) / self.magnification
-        for start, end in mouse_movement:
-            start -= center
-            end -= center
+        for event in mouse_move_events:
+            end = pygame.Vector2(event.pos) - center
+            start = end - event.rel
             self.angle += end.angle_to(start)
+        self.angle += keyboard_angle
         self.angle %= 360
         self.foreground = pygame.transform.rotate(self.foreground_original, self.angle)
         self.foreground_rect = self.foreground.get_rect(center=center * self.magnification)

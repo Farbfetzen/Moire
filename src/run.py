@@ -10,6 +10,8 @@ PATTERNS = {
     "dots": src.dots.DotsPattern,
     "lines": src.lines.LinePattern
 }
+KEYBOARD_MOVE_DISTANCE = 1
+KEYBOARD_ROTATE_ANGLE = 0.1
 
 
 class App:
@@ -18,6 +20,7 @@ class App:
         self.window = pygame.display.set_mode(window_size)
         pygame.display.set_caption("Particles")
         self.clock = pygame.time.Clock()
+        pygame.key.set_repeat(500, 17)
 
         self.pattern_name = pattern_name
         self.pattern = PATTERNS[pattern_name]()
@@ -41,10 +44,12 @@ class App:
 
     def run(self):
         movement_mouse = pygame.Vector2()
+        movement_keyboard = pygame.Vector2()
         rotation_mouse = []
+        rotation_keyboard = 0
 
         while True:
-            dt = self.clock.tick(60) / 1000  # in seconds
+            self.clock.tick(60)
             draw_pattern = False
 
             for event in pygame.event.get():
@@ -59,20 +64,32 @@ class App:
                     elif event.key == pygame.K_F1:
                         self.show_info = not self.show_info
                         draw_pattern = True
+                    elif event.key == pygame.K_w:
+                        movement_keyboard.y -= KEYBOARD_MOVE_DISTANCE
+                    elif event.key == pygame.K_a:
+                        movement_keyboard.x -= KEYBOARD_MOVE_DISTANCE
+                    elif event.key == pygame.K_s:
+                        movement_keyboard.y += KEYBOARD_MOVE_DISTANCE
+                    elif event.key == pygame.K_d:
+                        movement_keyboard.x += KEYBOARD_MOVE_DISTANCE
+                    elif event.key == pygame.K_q:
+                        rotation_keyboard += KEYBOARD_ROTATE_ANGLE
+                    elif event.key == pygame.K_e:
+                        rotation_keyboard -= KEYBOARD_ROTATE_ANGLE
                 elif event.type == pygame.MOUSEMOTION and event.buttons[0]:
                     movement_mouse += event.rel
                 elif event.type == pygame.MOUSEMOTION and event.buttons[2]:
-                    end_position = pygame.Vector2(event.pos)
-                    start_position = end_position - event.rel
-                    rotation_mouse.append((start_position, end_position))
+                    rotation_mouse.append(event)
 
-            if movement_mouse != (0, 0):
-                self.pattern.move(movement_mouse)
+            if movement_mouse != (0, 0) or movement_keyboard != (0, 0):
+                self.pattern.move(movement_mouse + movement_keyboard)
                 movement_mouse.update(0, 0)
+                movement_keyboard.update(0, 0)
                 draw_pattern = True
-            if rotation_mouse:
-                self.pattern.rotate(rotation_mouse)
+            if rotation_mouse or rotation_keyboard != 0:
+                self.pattern.rotate(rotation_mouse, rotation_keyboard)
                 rotation_mouse.clear()
+                rotation_keyboard = 0
                 draw_pattern = True
 
             if draw_pattern:

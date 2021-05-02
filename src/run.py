@@ -1,9 +1,12 @@
 import pygame
 
-from src import dots
+import src.dots
 
 
 CURSOR_MODES = ("move", "rotate")
+PATTERNS = {
+    "dots": src.dots.DotsPattern
+}
 
 
 def run(pattern_name, window_size):
@@ -14,7 +17,7 @@ def run(pattern_name, window_size):
 
     movement_mouse = pygame.Vector2()
     rotation_mouse = []
-    pattern = dots.DotsPattern(window_size)
+    pattern = PATTERNS[pattern_name](window_size)
     pattern.draw(window)
 
     while True:

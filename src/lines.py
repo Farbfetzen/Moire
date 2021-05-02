@@ -5,8 +5,8 @@ import pygame
 from src.pattern import Pattern
 
 
-BACKGROUND_COLOR = pygame.Color(16, 16, 16)
-LINE_COLOR = pygame.Color(220, 220, 220)
+BACKGROUND_COLOR = pygame.Color(220, 220, 220)
+LINE_COLOR = pygame.Color(16, 16, 16)
 LINE_WIDTH = 4
 LINE_DISTANCE = 16
 

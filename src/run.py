@@ -29,8 +29,8 @@ class App:
         self.window_center = pygame.Vector2(self.window.get_rect().center)
         self.show_info = True
         self.font = pygame.freetype.SysFont(("consolas", "inconsolata", "monospace"), 16)
-        self.font.fgcolor = pygame.Color((220, 220, 220))
-        self.font.bgcolor = pygame.Color((16, 16, 16))
+        self.font.fgcolor = pygame.Color((16, 16, 16))
+        self.font.bgcolor = pygame.Color((220, 220, 220))
         self.font.pad = True
         self.line_spacing = pygame.Vector2(0, self.font.get_sized_height())
         self.text_margin = pygame.Vector2(5, 5)

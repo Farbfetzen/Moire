@@ -6,19 +6,19 @@ class Pattern:
         self.background = background
         self.foreground = foreground
         self.foreground_original = foreground.copy()
-        self.foreground_position = pygame.Vector2()
-        self.foreground_rect = self.foreground.get_rect()
+        self.window_size = pygame.display.get_window_size()
+        self.foreground_center = pygame.Vector2(self.window_size) * magnification / 2
+        self.foreground_rect = self.foreground.get_rect(center=self.foreground_center)
         self.big_surface = pygame.Surface(self.background.get_size())
         self.angle = 0
-        self.window_size = pygame.display.get_window_size()
         self.magnification = magnification
 
     def move(self, motion):
-        self.foreground_position += motion * self.magnification
-        self.foreground_rect.topleft = self.foreground_position
+        self.foreground_center += motion * self.magnification
+        self.foreground_rect.center = self.foreground_center
 
     def rotate(self, mouse_move_events, keyboard_angle):
-        center = pygame.Vector2(self.foreground_rect.center) / self.magnification
+        center = self.foreground_center / self.magnification
         for event in mouse_move_events:
             end = pygame.Vector2(event.pos) - center
             start = end - event.rel
@@ -26,13 +26,12 @@ class Pattern:
         self.angle += keyboard_angle
         self.angle %= 360
         self.foreground = pygame.transform.rotate(self.foreground_original, self.angle)
-        self.foreground_rect = self.foreground.get_rect(center=center * self.magnification)
-        self.foreground_position.update(self.foreground_rect.topleft)
+        self.foreground_rect = self.foreground.get_rect(center=self.foreground_center)
 
     def reset(self):
         self.foreground = self.foreground_original.copy()
         self.foreground_rect = self.foreground.get_rect()
-        self.foreground_position.update(self.foreground_rect.topleft)
+        self.foreground_center.update(self.foreground_rect.center)
         self.angle = 0
 
     def draw(self, target_surface):

@@ -31,7 +31,6 @@ class App:
         self.font = pygame.freetype.SysFont(("consolas", "inconsolata", "monospace"), 16)
         self.font.fgcolor = pygame.Color((16, 16, 16))
         self.font.bgcolor = pygame.Color((220, 220, 220))
-        self.font.pad = True
         self.line_spacing = pygame.Vector2(0, self.font.get_sized_height())
         self.text_margin = pygame.Vector2(5, 5)
         _, self.info_rect = self.font.render(
@@ -114,13 +113,13 @@ class App:
             self.text_margin,
             f"name: {self.pattern_name}"
         )
-        translation = (pygame.Vector2(self.pattern.foreground_rect.center)
+        translation = (self.pattern.foreground_center
                        / self.pattern.magnification
                        - self.window_center)
         self.font.render_to(
             self.info_surface,
             self.text_margin + self.line_spacing,
-            f"translation: {int(translation.x)}, {int(translation.y)}"
+            f"translation: {translation.x:.0f}, {translation.y:.0f}"
         )
         self.font.render_to(
             self.info_surface,

@@ -19,6 +19,7 @@ def run(pattern_name, window_size):
 
     while True:
         dt = clock.tick(60) / 1000  # in seconds
+        draw = False
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -28,6 +29,7 @@ def run(pattern_name, window_size):
                     return
                 elif event.key == pygame.K_BACKSPACE:
                     pattern.reset()
+                    draw = True
                 # elif event.key == pygame.K_F1:
                 #     show_info = not show_info
             elif event.type == pygame.MOUSEMOTION and event.buttons[0]:
@@ -37,7 +39,6 @@ def run(pattern_name, window_size):
                 start_position = end_position - event.rel
                 rotation_mouse.append((start_position, end_position))
 
-        draw = False
         if movement_mouse != (0, 0):
             pattern.move(movement_mouse)
             movement_mouse.update(0, 0)

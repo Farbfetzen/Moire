@@ -5,16 +5,16 @@ import pygame
 
 BACKGROUND_COLOR = pygame.Color(16, 16, 16)
 CIRCLE_COLOR = pygame.Color(220, 220, 220)
-CIRCLE_RADIUS = 5
-CIRCLE_DISTANCE = 20
+CIRCLE_RADIUS = 3
+CIRCLE_DISTANCE = 10
 
 
 class DotsPattern:
     def __init__(self, window_size):
+        width, height = window_size
         self.background = pygame.Surface(window_size)
         self.background.fill(BACKGROUND_COLOR)
 
-        width, height = window_size
         n_horizontal = ceil(width / CIRCLE_DISTANCE)
         n_vertical = ceil(height / CIRCLE_DISTANCE)
         for i in range(n_horizontal):
@@ -23,9 +23,9 @@ class DotsPattern:
                 y = CIRCLE_RADIUS + CIRCLE_DISTANCE * j
                 pygame.draw.circle(self.background, CIRCLE_COLOR, (x, y), CIRCLE_RADIUS)
 
-        self.foreground = self.background.copy()
-        self.foreground.set_colorkey(BACKGROUND_COLOR)
-        self.foreground_original = self.foreground.copy()  # base for rotations
+        self.foreground_original = self.background.copy()
+        self.foreground_original.set_colorkey(BACKGROUND_COLOR)
+        self.foreground = self.foreground_original.copy()
 
         self.foreground_position = pygame.Vector2()
         self.foreground_rect = self.foreground.get_rect()
@@ -46,7 +46,10 @@ class DotsPattern:
         self.foreground_position.update(self.foreground_rect.topleft)
 
     def reset(self):
-        self.foreground_position.update(0, 0)
+        self.foreground = self.foreground_original.copy()
+        self.foreground_rect = self.foreground.get_rect()
+        self.foreground_position.update(self.foreground_rect.topleft)
+        self.angle = 0
 
     def draw(self, target_surface):
         target_surface.blit(self.background, (0, 0))

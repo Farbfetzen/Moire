@@ -1,10 +1,5 @@
 - more patterns, see english wikipedia
-- key controls: wasd, qe, move 10 pixels, rotate one degree
-- smooth rotation. Need pixel alphas for that. But avoid edge artifacts.
-- show name, angle and offset (of the centers) in top left corner
-- more arguments: foreground color, background color
+- key controls: wasd, qe, move n pixels and rotate one degree per keypress
+- more command line arguments: foreground color, background color
 - pattern-specific command line arguments: line width and distance, circle radius and distance, etc.
 
-Try a different technique for smooth edges with colorkey and with less edge artifacts:
-Keep foreground and background always at size with double sidelength. Also have a big surface for combining the two. In the draw method first blit background and foreground onto the big surface, then smoothscale that down with dest=target_surface (the window). Make sure to adjust the foreground_rect for proper rotation. Also remember to draw patterns at double the size.
-This shouldn't hurt performance because drawing is only done when something changes and it doesn't use pixel alpha transparency.

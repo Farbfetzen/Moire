@@ -16,6 +16,7 @@ Action | Binding
 Move (translate) foreground | Left mouse button
 Rotate foreground | Right mouse button
 Reset foreground | Backspace
+Toggle info display | F1
 Quit | Esc
 
 

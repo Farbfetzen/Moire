@@ -28,4 +28,4 @@ valid_names = {"dots", "lines"}
 if args.name not in valid_names:
     parser.error(f"name must be one of {list(valid_names)}")
 
-src.run.run(args.name, args.window_size)
+src.run.App(args.name, args.window_size).run()

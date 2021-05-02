@@ -1,0 +1,6 @@
+# readme
+# base pattern class
+# more patterns, see english wikipedia
+# key controls: wasd, qe, move 10 pixels, rotate one degree
+# smooth rotation. Need pixel alphas for that
+# show name, angle and offset (of the centers) in top left corner

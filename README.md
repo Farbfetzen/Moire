@@ -1,4 +1,4 @@
-An exploration of [Moiré patterns](https://en.wikipedia.org/wiki/Moir%C3%A9_pattern). They appear when an image with transparent gaps is moved and rotated in front of another image with a similar pattern.
+An interactive exploration of [Moiré patterns](https://en.wikipedia.org/wiki/Moir%C3%A9_pattern). They appear when an image with transparent gaps is moved and rotated in front of another image with a similar pattern.
 
 Concentric circles displaced relative to each other:  
 ![circles example](images/circles.png)

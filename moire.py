@@ -4,6 +4,9 @@ import os
 os.environ["PYGAME_HIDE_SUPPORT_PROMPT"] = "1"
 
 import src.app
+import src.dots
+import src.lines
+import src.circles
 
 
 parser = argparse.ArgumentParser()
@@ -24,8 +27,12 @@ parser.add_argument(
 )
 args = parser.parse_args()
 
-valid_names = {"dots", "lines", "circles"}
-if args.name not in valid_names:
-    parser.error(f"name must be one of {list(valid_names)}")
+patterns = {
+    "dots": src.dots.DotsPattern,
+    "lines": src.lines.LinePattern,
+    "circles": src.circles.CirclesPattern
+}
+if args.name not in patterns:
+    parser.error(f"name must be one of {list(patterns)}")
 
-src.app.App(args.name, args.window_size).run()
+src.app.App(patterns, args.name, args.window_size).run()

@@ -1,30 +1,22 @@
 import pygame
 import pygame.freetype
 
-import src.dots
-import src.lines
-import src.circles
 
-
-PATTERNS = {
-    "dots": src.dots.DotsPattern,
-    "lines": src.lines.LinePattern,
-    "circles": src.circles.CirclesPattern
-}
 KEYBOARD_MOVE_DISTANCE = 1
 KEYBOARD_ROTATE_ANGLE = 0.1
 
 
 class App:
-    def __init__(self, pattern_name, window_size):
+    def __init__(self, patterns, pattern_name, window_size):
         pygame.init()
         self.window = pygame.display.set_mode(window_size)
         pygame.display.set_caption("Particles")
         self.clock = pygame.time.Clock()
         pygame.key.set_repeat(500, 17)
 
+        self.patterns = patterns
         self.pattern_name = pattern_name
-        self.pattern = PATTERNS[pattern_name]()
+        self.pattern = self.patterns[pattern_name]()
         self.pattern.draw(self.window)
 
         self.window_center = pygame.Vector2(self.window.get_rect().center)

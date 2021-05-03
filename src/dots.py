@@ -14,7 +14,7 @@ CIRCLE_DISTANCE = 10
 class DotsPattern(Pattern):
     def __init__(self):
         width, height = pygame.display.get_window_size()
-        magnification = 1.5  # good compromise between speed and smoothness
+        magnification = 1.5
         background = pygame.Surface((width * magnification, height * magnification))
         background.fill(BACKGROUND_COLOR)
 

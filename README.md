@@ -1,4 +1,4 @@
-An exploration of [Moiré patterns](https://en.wikipedia.org/wiki/Moir%C3%A9_pattern).
+An exploration of [Moiré patterns](https://en.wikipedia.org/wiki/Moir%C3%A9_pattern). The window shows two patterns, one of which can be moved and rotated relative to the other.
 
 Requires Python 3 and Pygame 2. You can choose the pattern by giving its name as the first argument.
 If it is missing, the "dots" pattern is used.

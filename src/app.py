@@ -3,12 +3,13 @@ import pygame.freetype
 
 import src.dots
 import src.lines
+import src.circles
 
 
-CURSOR_MODES = ("move", "rotate")
 PATTERNS = {
     "dots": src.dots.DotsPattern,
-    "lines": src.lines.LinePattern
+    "lines": src.lines.LinePattern,
+    "circles": src.circles.CirclesPattern
 }
 KEYBOARD_MOVE_DISTANCE = 1
 KEYBOARD_ROTATE_ANGLE = 0.1

@@ -8,6 +8,7 @@ python moire.py lines
 Available patterns:
 - dots
 - lines
+- circles
 
 
 ### Controls:

@@ -13,8 +13,9 @@ python moire.py lines
 ```
 Available patterns:
 - dots
-- lines
 - circles
+- lines
+- squares
 
 
 ### Controls:

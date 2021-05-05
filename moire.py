@@ -7,6 +7,7 @@ import src.app
 import src.dots
 import src.lines
 import src.circles
+import src.squares
 
 
 parser = argparse.ArgumentParser()
@@ -30,7 +31,8 @@ args = parser.parse_args()
 patterns = {
     "dots": src.dots.DotsPattern,
     "lines": src.lines.LinePattern,
-    "circles": src.circles.CirclesPattern
+    "circles": src.circles.CirclesPattern,
+    "squares": src.squares.SquarePattern
 }
 if args.name not in patterns:
     parser.error(f"name must be one of {list(patterns)}")

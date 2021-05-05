@@ -1,15 +1,17 @@
 import pygame
 import pygame.freetype
 
+import src.shared_constants as sc
+
 
 KEYBOARD_MOVE_DISTANCE = 1
 KEYBOARD_ROTATE_ANGLE = 0.1
 
 
 class App:
-    def __init__(self, patterns, pattern_name, window_size):
+    def __init__(self, patterns, pattern_name):
         pygame.init()
-        self.window = pygame.display.set_mode(window_size)
+        self.window = pygame.display.set_mode(sc.WINDOW_SIZE)
         pygame.display.set_caption("Particles")
         self.clock = pygame.time.Clock()
         pygame.key.set_repeat(500, 17)
@@ -26,8 +28,9 @@ class App:
         self.font.bgcolor = pygame.Color((220, 220, 220))
         self.line_spacing = pygame.Vector2(0, self.font.get_sized_height())
         self.text_margin = pygame.Vector2(5, 5)
+        w, h = sc.WINDOW_SIZE
         _, self.info_rect = self.font.render(
-            f" translation: -{window_size[0]}, -{window_size[1]} "  # maximum width
+            f" translation: -{w}, -{h} "  # maximum string width
         )
         self.info_rect.height = self.text_margin.y * 2 + self.line_spacing.y * 3
         self.info_rect.topleft = self.text_margin
@@ -107,7 +110,7 @@ class App:
             f"name: {self.pattern_name}"
         )
         translation = (self.pattern.foreground_center
-                       / self.pattern.magnification
+                       / sc.MAGNIFICATION
                        - self.window_center)
         self.font.render_to(
             self.info_surface,

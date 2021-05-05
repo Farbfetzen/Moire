@@ -3,6 +3,7 @@ from math import ceil, sqrt
 import pygame
 
 from src.pattern import Pattern
+import src.shared_constants as sc
 
 
 BACKGROUND_COLOR = pygame.Color(220, 220, 220)
@@ -13,13 +14,12 @@ DOT_DISTANCE = 12
 
 class DotsHexagonalPattern(Pattern):
     def __init__(self):
-        width, height = pygame.display.get_window_size()
-        magnification = 1.5
-        background = pygame.Surface((width * magnification, height * magnification))
+        width, height = sc.WINDOW_SIZE
+        background = pygame.Surface((width * sc.MAGNIFICATION, height * sc.MAGNIFICATION))
         background.fill(BACKGROUND_COLOR)
 
-        dot_radius_magnified = DOT_RADIUS * magnification
-        dot_distance_magnified = DOT_DISTANCE * magnification
+        dot_radius_magnified = DOT_RADIUS * sc.MAGNIFICATION
+        dot_distance_magnified = DOT_DISTANCE * sc.MAGNIFICATION
         column_spacing = sqrt(3) / 2 * dot_distance_magnified  # height of equilateral triangle
         shifted_column_offset = dot_distance_magnified / 2
         column_is_shifted = False
@@ -27,8 +27,8 @@ class DotsHexagonalPattern(Pattern):
         n_vertical = ceil(height / DOT_DISTANCE) + 1
 
         # Make it so that there is a dot at the center of rotation:
-        width_half = width * magnification / 2
-        height_half = height * magnification / 2
+        width_half = width * sc.MAGNIFICATION / 2
+        height_half = height * sc.MAGNIFICATION / 2
         center_column_index, x_offset = divmod(
             (width_half - dot_radius_magnified),
             column_spacing
@@ -57,4 +57,4 @@ class DotsHexagonalPattern(Pattern):
         foreground = background.copy()
         foreground.set_colorkey(BACKGROUND_COLOR)
 
-        super().__init__(background, foreground, magnification)
+        super().__init__(background, foreground)

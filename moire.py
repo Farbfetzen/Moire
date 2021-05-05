@@ -9,6 +9,7 @@ import src.dots_hexagonal
 import src.lines
 import src.circles
 import src.squares
+import src.shared_constants as sc
 
 
 parser = argparse.ArgumentParser()
@@ -24,7 +25,7 @@ parser.add_argument(
     metavar=("<width>", "<height>"),
     nargs=2,
     type=int,
-    default=(1200, 800),
+    default=sc.WINDOW_SIZE,
     help="Specify the window width and height in pixels."
 )
 args = parser.parse_args()
@@ -39,4 +40,6 @@ patterns = {
 if args.name not in patterns:
     parser.error(f"name must be one of {list(patterns)}")
 
-src.app.App(patterns, args.name, args.window_size).run()
+sc.WINDOW_SIZE = args.window_size
+
+src.app.App(patterns, args.name).run()

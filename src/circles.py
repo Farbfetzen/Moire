@@ -3,6 +3,7 @@ from math import ceil
 import pygame
 
 from src.pattern import Pattern
+import src.shared_constants as sc
 
 
 BACKGROUND_COLOR = pygame.Color(220, 220, 220)
@@ -13,13 +14,12 @@ CIRCLE_RADIUS_INCREMENT = 8  # difference in radii between two circles
 
 class CirclesPattern(Pattern):
     def __init__(self):
-        width, height = pygame.display.get_window_size()
-        magnification = 1.5
-        background = pygame.Surface((width * magnification, height * magnification))
+        width, height = sc.WINDOW_SIZE
+        background = pygame.Surface((width * sc.MAGNIFICATION, height * sc.MAGNIFICATION))
         background.fill(BACKGROUND_COLOR)
-        width_magnified = round(CIRCLE_WIDTH * magnification)
-        radius_increment_magnified = CIRCLE_RADIUS_INCREMENT * magnification
-        center = (width / 2 * magnification, height / 2 * magnification)
+        width_magnified = round(CIRCLE_WIDTH * sc.MAGNIFICATION)
+        radius_increment_magnified = CIRCLE_RADIUS_INCREMENT * sc.MAGNIFICATION
+        center = (width / 2 * sc.MAGNIFICATION, height / 2 * sc.MAGNIFICATION)
         n_circles = ceil(max(width, height) / CIRCLE_RADIUS_INCREMENT)
         for i in range(n_circles):
             pygame.draw.circle(
@@ -33,4 +33,4 @@ class CirclesPattern(Pattern):
         foreground = background.copy()
         foreground.set_colorkey(BACKGROUND_COLOR)
 
-        super().__init__(background, foreground, magnification)
+        super().__init__(background, foreground)

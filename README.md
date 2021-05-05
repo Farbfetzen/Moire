@@ -12,7 +12,8 @@ If it is missing, the "dots" pattern is used.
 python moire.py lines
 ```
 Available patterns:
-- dots
+- dots_square
+- dots_hexagonal
 - circles
 - lines
 - squares

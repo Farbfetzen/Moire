@@ -4,7 +4,8 @@ import os
 os.environ["PYGAME_HIDE_SUPPORT_PROMPT"] = "1"
 
 import src.app
-import src.dots
+import src.dots_square
+import src.dots_hexagonal
 import src.lines
 import src.circles
 import src.squares
@@ -14,7 +15,7 @@ parser = argparse.ArgumentParser()
 parser.add_argument(
     "name",
     nargs="?",
-    default="dots",
+    default="dots_square",
     help="Name of the particle simulation."
 )
 parser.add_argument(
@@ -29,7 +30,8 @@ parser.add_argument(
 args = parser.parse_args()
 
 patterns = {
-    "dots": src.dots.DotsPattern,
+    "dots_square": src.dots_square.DotsSquarePattern,
+    "dots_hexagonal": src.dots_hexagonal.DotsHexagonalPattern,
     "lines": src.lines.LinePattern,
     "circles": src.circles.CirclesPattern,
     "squares": src.squares.SquarePattern

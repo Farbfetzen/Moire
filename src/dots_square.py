@@ -11,7 +11,7 @@ DOT_RADIUS = 5
 DOT_DISTANCE = 10
 
 
-class DotsPattern(Pattern):
+class DotsSquarePattern(Pattern):
     def __init__(self):
         width, height = pygame.display.get_window_size()
         magnification = 1.5

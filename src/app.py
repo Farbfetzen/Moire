@@ -19,6 +19,8 @@ class App:
         self.patterns = patterns
         self.pattern_name = pattern_name
         self.pattern = self.patterns[pattern_name]()
+        self.pattern_names = sorted(list(patterns.keys()))
+        self.pattern_index = self.pattern_names.index(self.pattern_name)
         self.pattern.draw(self.window)
 
         self.window_center = pygame.Vector2(self.window.get_rect().center)
@@ -71,6 +73,12 @@ class App:
                         rotation_keyboard += KEYBOARD_ROTATE_ANGLE
                     elif event.key == pygame.K_e:
                         rotation_keyboard -= KEYBOARD_ROTATE_ANGLE
+                    elif event.key == pygame.K_n:
+                        # Switch to next pattern
+                        self.pattern_index = (self.pattern_index + 1) % len(self.pattern_names)
+                        self.pattern_name = self.pattern_names[self.pattern_index]
+                        self.pattern = self.patterns[self.pattern_name]()
+                        draw_pattern = True
                 elif event.type == pygame.MOUSEMOTION and event.buttons[0]:
                     movement_mouse += event.rel
                 elif event.type == pygame.MOUSEMOTION and event.buttons[2]:

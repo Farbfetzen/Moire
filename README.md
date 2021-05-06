@@ -25,6 +25,7 @@ Action | Binding
 Move | Left mouse button or W, A, S, D
 Rotate | Right mouse button or Q, E
 Reset | Backspace
+Next pattern | N
 Toggle info display | F1
 Quit | Esc
 

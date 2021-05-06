@@ -22,10 +22,12 @@ class DotsSquarePattern(Pattern):
         n_vertical = ceil(height / DOT_DISTANCE)
         dot_radius_magnified = DOT_RADIUS * sc.MAGNIFICATION
         dot_distance_magnified = DOT_DISTANCE * sc.MAGNIFICATION
+        # Pre-compute y-coordinates because they are identical for every x.
+        y_coordinates = [dot_radius_magnified + dot_distance_magnified * i
+                         for i in range(n_vertical)]
         for i in range(n_horizontal):
             x = dot_radius_magnified + dot_distance_magnified * i
-            for j in range(n_vertical):
-                y = dot_radius_magnified + dot_distance_magnified * j
+            for y in y_coordinates:
                 pygame.draw.circle(
                     background,
                     DOT_COLOR,

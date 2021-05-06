@@ -22,7 +22,6 @@ class DotsHexagonalPattern(Pattern):
         dot_distance_magnified = DOT_DISTANCE * sc.MAGNIFICATION
         column_spacing = sqrt(3) / 2 * dot_distance_magnified  # height of equilateral triangle
         shifted_column_offset = dot_distance_magnified / 2
-        column_is_shifted = False
         n_horizontal = ceil((width * 1.5) / column_spacing) + 1
         n_vertical = ceil(height / DOT_DISTANCE) + 1
 
@@ -39,13 +38,17 @@ class DotsHexagonalPattern(Pattern):
         else:
             y_offset = (height_half - dot_radius_magnified) % dot_distance_magnified
 
+        # Pre-compute y-coordinates because they repeat.
+        y_const = dot_radius_magnified + y_offset - dot_distance_magnified
+        y_coordinates = [(i * dot_distance_magnified + y_const) for i in range(n_vertical)]
+        y_coordinates_shifted = [y + shifted_column_offset for y in y_coordinates]
+
+        column_is_shifted = False
+        x_const = dot_radius_magnified + x_offset - column_spacing
         for i in range(n_horizontal):
-            x = dot_radius_magnified + column_spacing * i + x_offset - column_spacing
-            for j in range(n_vertical):
-                y = (dot_radius_magnified + dot_distance_magnified * j
-                     + y_offset - dot_distance_magnified)
-                if column_is_shifted:
-                    y += shifted_column_offset
+            x = i * column_spacing + x_const
+            y_coords = y_coordinates_shifted if column_is_shifted else y_coordinates
+            for y in y_coords:
                 pygame.draw.circle(
                     background,
                     DOT_COLOR,

@@ -12,11 +12,20 @@ import src.squares
 import src.shared_constants as sc
 
 
+patterns = {
+    "dots_square": src.dots_square.DotsSquarePattern,
+    "dots_hexagonal": src.dots_hexagonal.DotsHexagonalPattern,
+    "lines": src.lines.LinePattern,
+    "circles": src.circles.CirclesPattern,
+    "squares": src.squares.SquarePattern
+}
+
 parser = argparse.ArgumentParser()
 parser.add_argument(
     "name",
     nargs="?",
     default="dots_square",
+    choices=patterns.keys(),
     help="Name of the particle simulation."
 )
 parser.add_argument(
@@ -30,16 +39,5 @@ parser.add_argument(
 )
 args = parser.parse_args()
 
-patterns = {
-    "dots_square": src.dots_square.DotsSquarePattern,
-    "dots_hexagonal": src.dots_hexagonal.DotsHexagonalPattern,
-    "lines": src.lines.LinePattern,
-    "circles": src.circles.CirclesPattern,
-    "squares": src.squares.SquarePattern
-}
-if args.name not in patterns:
-    parser.error(f"name must be one of {list(patterns)}")
-
 sc.WINDOW_SIZE = args.window_size
-
 src.app.App(patterns, args.name).run()

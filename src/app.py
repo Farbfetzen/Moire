@@ -12,7 +12,7 @@ class App:
     def __init__(self, patterns, pattern_name):
         pygame.init()
         self.window = pygame.display.set_mode(sc.WINDOW_SIZE)
-        pygame.display.set_caption("Particles")
+        pygame.display.set_caption("Moiré")
         self.clock = pygame.time.Clock()
         pygame.key.set_repeat(500, 17)
 
